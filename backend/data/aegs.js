@@ -12,10 +12,7 @@ module.exports = {
     title: "The Hollow Choir",
     source: `[[include :aegis:component:anomaly-class-bar
 |item-number= 001
-|clearance= 2
 |container-class= euclid
-|secondary-class= none
-|secondary-icon= /Ophiuchus.png
 |disruption-class= vlam
 |risk-class= warning
 ]]

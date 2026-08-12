@@ -23,7 +23,7 @@ export default function Topbar() {
         </Link>
 
         <div className="flex items-center gap-4 text-xs uppercase tracking-wider text-[#5f7370]">
-          <span>Personnel: CLASS-D</span>
+          <span>Personnel: Senior Researcher</span>
           <button className="border border-[#0f766e] bg-white px-3 py-1 uppercase tracking-wider text-[#0f766e] transition hover:bg-[#0f766e] hover:text-white">
             Login
           </button>

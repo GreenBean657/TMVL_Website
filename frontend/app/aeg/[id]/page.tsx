@@ -99,20 +99,7 @@ export default async function AegPage({ params }: AegPageProps) {
       {pages.map((blocks, index) => (
         <DocPage key={index} docId={docId} page={index + 1} total={total}>
           {index === 0 && (
-            <>
-              <div className="mb-6 border border-[#0f766e] bg-[#f0fdfa] px-3 py-1 text-center text-[10px] font-bold uppercase tracking-[0.2em] text-[#0f766e]">
-                AEGIS Internal Document — Level 2 Clearance Required
-              </div>
-
-              <div className="mb-6 border-b-2 border-[#0f766e] pb-2">
-                <h1 className="font-serif text-3xl font-bold uppercase tracking-wide text-[#134e4a]">
-                  {docId}
-                </h1>
-                <p className="mt-1 font-serif italic text-[#5f7370]">
-                  {doc.title}
-                </p>
-              </div>
-            </>
+            <></>
           )}
 
           {blocks.map((block, i) => (
@@ -125,7 +112,7 @@ export default async function AegPage({ params }: AegPageProps) {
                 AEGIS Classification: Restricted
               </p>
               <p>
-                Unauthorized distribution of this document is punishable under Facility Directive 9-Alpha.
+                Unauthorized distribution of this document is punishable by termination.
               </p>
             </footer>
           )}

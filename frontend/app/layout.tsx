@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
+export const metadata: { title: string; description: string } = {
   title: "AEGIS",
   description:
     "Alter. Evaluate. Govern. Isolate. Secure. The AEGIS anomalous entity database.",
