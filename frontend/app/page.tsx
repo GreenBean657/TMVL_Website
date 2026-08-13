@@ -1,4 +1,5 @@
 import Link from "next/link";
+import styles from "../css/home.module.css";
 
 const series = [
   { range: "001 to 099", items: [
@@ -12,40 +13,40 @@ const series = [
 
 export default function Home() {
   return (
-    <section className="min-h-full p-6 font-sans text-[#222]">
-      <div className="mx-auto max-w-4xl border border-[#b8c8c6] bg-white p-8 shadow-sm">
-        <div className="mb-6 border-b-2 border-[#0f766e] pb-3">
-          <h1 className="font-serif text-3xl font-bold uppercase tracking-wide text-[#134e4a]">
+    <section className={styles.section}>
+      <div className={styles.card}>
+        <div className={styles.header}>
+          <h1 className={styles.title}>
             AEG Database
           </h1>
-          <p className="mt-1 text-sm text-[#5f7370]">
+          <p className={styles.subtitle}>
             Classified entries for anomalous entities under AEGIS containment.
           </p>
         </div>
 
-        <div className="mb-6 border border-[#0f766e] bg-[#f0fdfa] p-3 text-sm text-[#0f766e]">
+        <div className={styles.notice}>
           <strong>NOTICE:</strong> The following documents are restricted to personnel with Level-2 clearance or higher. Unauthorized access is logged and prosecuted under Facility Directive 9-Alpha.
         </div>
 
         {series.map((group) => (
-          <div key={group.range} className="mb-8">
-            <h2 className="mb-3 border-b border-[#c8d6d4] pb-1 font-serif text-lg font-bold uppercase tracking-wide text-[#134e4a]">
+          <div key={group.range} className={styles.group}>
+            <h2 className={styles.groupTitle}>
               AEGs {group.range}
             </h2>
-            <ul className="space-y-1 text-sm">
+            <ul className={styles.list}>
               {group.items.map((item) => (
-                <li key={item.id} className="-mx-2 flex gap-2 rounded px-2 py-0.5 transition hover:bg-[#f0fdfa]">
-                  <span className="w-20 shrink-0 font-mono">
+                <li key={item.id} className={styles.item}>
+                  <span className={styles.itemId}>
                     <Link
                       href={`/aeg/${item.id}`}
-                      className="text-[#0f766e] underline hover:text-[#134e4a]"
+                      className={styles.itemLink}
                     >
                       AEG-{item.id}
                     </Link>
                   </span>
-                  <span className="shrink-0 text-[#7a8a88]">-</span>
+                  <span className={styles.dash}>-</span>
                   <span>{item.title}</span>
-                  <span className="ml-auto text-xs font-bold text-[#0f766e]">
+                  <span className={styles.itemClass}>
                     {item.class}
                   </span>
                 </li>
@@ -54,9 +55,9 @@ export default function Home() {
           </div>
         ))}
 
-        <div className="border-t border-[#c8d6d4] pt-4 text-xs text-[#5f7370]">
+        <div className={styles.footer}>
           <p>
-            Last database sync: <span className="font-mono">2026-08-11 21:47 UTC</span>.
+            Last database sync: <span className={styles.mono}>2026-08-11 21:47 UTC</span>.
             Report discrepancies to your Site Administrator.
           </p>
         </div>

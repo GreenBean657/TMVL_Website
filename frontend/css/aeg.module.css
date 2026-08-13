@@ -1,0 +1,37 @@
+@reference "tailwindcss";
+
+.docPage { { /* min-w-3xl max-w-3xl = pg size lock */ }
+  @apply mx-auto mb-8 min-h-[1000px] min-w-3xl max-w-3xl border border-[#b8c8c6] bg-white px-10 py-8 shadow-md;
+}
+
+.docHeader {
+  @apply mb-6 flex justify-between border-b border-[#c8d6d4] pb-2 text-[10px] font-bold uppercase tracking-widest text-[#5f7370];
+}
+
+.heading {
+  @apply mt-6 mb-2 border-b border-[#c8d6d4] pb-1 font-serif text-xl font-bold uppercase tracking-wide text-[#134e4a] first:mt-0;
+}
+
+.paragraph {
+  @apply mb-4 leading-7;
+}
+
+.article {
+  @apply min-h-full p-6 font-sans text-[#222];
+}
+
+.wrapper {
+  @apply mx-auto max-w-3xl;
+}
+
+.backLink {
+  @apply mb-3 inline-block text-xs font-bold uppercase tracking-wider text-[#0f766e] hover:underline;
+}
+
+.footer {
+  @apply mt-8 border-t border-[#c8d6d4] pt-4 text-xs text-[#5f7370];
+}
+
+.restricted {
+  @apply font-bold uppercase text-[#0f766e];
+}

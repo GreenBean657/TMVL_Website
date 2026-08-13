@@ -1,0 +1,153 @@
+@reference "tailwindcss";
+
+.root {
+  @apply mb-8 font-sans text-[#111];
+}
+
+.header {
+  @apply flex items-end justify-between gap-6;
+}
+
+.aegLabel {
+  @apply flex items-baseline gap-2;
+}
+
+.aegPrefix {
+  @apply text-3xl font-bold tracking-tight;
+}
+
+.aegNumber {
+  @apply text-6xl leading-none font-black tracking-tight;
+}
+
+.dept {
+  @apply text-right leading-none;
+}
+
+.deptName {
+  @apply text-3xl font-black;
+}
+
+.deptSub {
+  @apply mt-1 text-xs font-bold tracking-[0.2em];
+}
+
+.dividerThick {
+  @apply my-1.5 h-2.5 bg-black;
+}
+
+.body {
+  @apply flex items-stretch;
+}
+
+.tier {
+  @apply flex w-[320px] shrink-0 items-stretch;
+}
+
+.tierStrip {
+  @apply w-1.5 shrink-0;
+}
+
+.tierBody {
+  @apply flex flex-1 items-center justify-between gap-3 px-3 py-3;
+}
+
+.tierText {
+  @apply min-w-0;
+}
+
+.tierLabel {
+  @apply text-xs font-bold tracking-wide text-[#333];
+}
+
+.tierName {
+  @apply text-3xl leading-none font-black uppercase whitespace-nowrap;
+}
+
+.tierEmblem {
+  @apply flex h-20 w-20 shrink-0 items-center justify-center;
+}
+
+.tierImg {
+  @apply h-20 w-auto object-contain;
+}
+
+.sideBar {
+  @apply w-2 shrink-0 self-stretch;
+}
+
+.classes {
+  @apply flex flex-1 flex-col gap-2.5 bg-[#eef3f5] px-4;
+}
+
+.classRow {
+  @apply flex flex-1 items-center gap-3 bg-[#d6eaf2];
+}
+
+.classText {
+  @apply flex flex-1 flex-col items-start;
+}
+
+.classLabel {
+  @apply text-[10px] font-bold tracking-wide text-[#333];
+}
+
+.classValue {
+  @apply text-2xl leading-none font-extrabold uppercase;
+}
+
+.badge {
+  @apply flex h-12 w-12 shrink-0 flex-col items-center justify-center rounded-full border-[3px];
+}
+
+.dividerThin {
+  @apply my-1 h-1 bg-gray-800;
+}
+
+.main {
+  @apply flex items-stretch border-b-2 border-white;
+}
+
+.mainInner {
+  @apply flex flex-1 items-stretch bg-[#dfe9f0];
+}
+
+.checklist {
+  @apply flex-1 px-4 py-2;
+}
+
+.checklist > :not(:last-child) {
+  margin-block-start: 0.25rem;
+}
+
+.checkItem {
+  @apply flex items-center gap-2 text-sm;
+}
+
+.checkbox {
+  @apply flex h-4 w-4 shrink-0 items-center justify-center border-2 border-[#1b3a5c] bg-white;
+}
+
+.checkmark {
+  @apply text-xs font-black leading-none text-[#1b3a5c];
+}
+
+.minPos {
+  @apply flex w-56 shrink-0 flex-col items-center border-l-2 border-white px-4 py-2;
+}
+
+.minPosLabel {
+  @apply bg-[#1b3a5c] px-4 py-1 text-[11px] font-bold uppercase text-white;
+}
+
+.minPosValueWrap {
+  @apply flex flex-1 items-center;
+}
+
+.minPosValue {
+  @apply text-center text-lg font-black uppercase leading-tight;
+}
+
+.dividerBottom {
+  @apply my-1 h-3 bg-gray-800;
+}

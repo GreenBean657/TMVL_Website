@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import AnomalyClassBar from "../../components/AnomalyClassBar";
 import { parsePages, type Block } from "../../lib/wikidot";
+import styles from "../../../css/aeg.module.css";
 
 interface AegPageProps {
   params: Promise<{ id: string }>;
@@ -34,8 +35,8 @@ function DocPage({
   children: ReactNode;
 }) {
   return (
-    <div className="mx-auto mb-8 min-h-[1000px] w-full max-w-3xl border border-[#b8c8c6] bg-white px-10 py-8 shadow-md">
-      <div className="mb-6 flex justify-between border-b border-[#c8d6d4] pb-2 text-[10px] font-bold uppercase tracking-widest text-[#5f7370]">
+    <div className={styles.docPage}>
+      <div className={styles.docHeader}>
         <span>{docId} — AEGIS Internal Document</span>
         <span>
           Page {page} of {total}
@@ -63,13 +64,13 @@ function BlockView({ block }: { block: Block }) {
       return <AnomalyClassBar params={block.params} />;
     case "heading":
       return (
-        <h2 className="mt-6 mb-2 border-b border-[#c8d6d4] pb-1 font-serif text-xl font-bold uppercase tracking-wide text-[#134e4a] first:mt-0">
+        <h2 className={styles.heading}>
           {block.text}
         </h2>
       );
     case "paragraph":
       return (
-        <p className="mb-4 leading-7">
+        <p className={styles.paragraph}>
           <RichText text={block.text} />
         </p>
       );
@@ -86,11 +87,11 @@ export default async function AegPage({ params }: AegPageProps) {
   const total = pages.length;
 
   return (
-    <article className="min-h-full p-6 font-sans text-[#222]">
-      <div className="mx-auto max-w-3xl">
+    <article className={styles.article}>
+      <div className={styles.wrapper}>
         <Link
           href="/"
-          className="mb-3 inline-block text-xs font-bold uppercase tracking-wider text-[#0f766e] hover:underline"
+          className={styles.backLink}
         >
           &laquo; Return to AEG Database
         </Link>
@@ -107,8 +108,8 @@ export default async function AegPage({ params }: AegPageProps) {
           ))}
 
           {index === total - 1 && (
-            <footer className="mt-8 border-t border-[#c8d6d4] pt-4 text-xs text-[#5f7370]">
-              <p className="font-bold uppercase text-[#0f766e]">
+            <footer className={styles.footer}>
+              <p className={styles.restricted}>
                 AEGIS Classification: Restricted
               </p>
               <p>

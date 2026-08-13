@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import styles from "../../css/components/sidebar.module.css";
 
 const sections = [
   { label: "Main", items: [{ label: "Home", href: "/" }] },
@@ -29,27 +30,25 @@ export default function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="w-64 border-r border-[#d3dddd] bg-[#f4f7f7] text-[13px]">
-      <div className="border-b border-[#d3dddd] bg-[#e8efef] p-3 text-xs font-bold uppercase tracking-wider text-[#4a5c5a]">
+    <aside className={styles.aside}>
+      <div className={styles.header}>
         Site Navigation
       </div>
-      <div className="p-3">
+      <div className={styles.body}>
         {sections.map((section) => (
-          <div key={section.label} className="mb-4">
-            <div className="mb-1 text-[11px] font-bold uppercase tracking-wider text-[#0f766e]">
+          <div key={section.label} className={styles.section}>
+            <div className={styles.label}>
               {section.label}
             </div>
-            <ul className="space-y-0">
+            <ul>
               {section.items.map((item) => {
                 const active = pathname === item.href;
                 return (
                   <li key={item.label}>
                     <Link
                       href={item.href}
-                      className={`block border-l-2 py-1 pl-2 transition ${
-                        active
-                          ? "border-[#0f766e] bg-[#dce8e7] font-bold text-[#0f766e]"
-                          : "border-transparent text-[#33403e] hover:bg-[#e4ecec] hover:text-[#0f766e]"
+                      className={`${styles.link} ${
+                        active ? styles.active : styles.inactive
                       }`}
                     >
                       {item.label}

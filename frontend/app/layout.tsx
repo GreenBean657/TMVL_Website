@@ -5,6 +5,7 @@ import Topbar from "./components/topbar";
 import Toplinks from "./components/toplinks";
 import Sidebar from "./components/sidebar";
 import Footer from "./components/footer";
+import styles from "../css/layout.module.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,14 +27,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${styles.html}`}
     >
-      <body className="bg-hexagon flex h-full flex-col font-sans text-[#222]">
+      <body className={`bg-hexagon ${styles.body}`}>
         <Topbar />
         <Toplinks />
-        <div className="flex flex-1 overflow-hidden">
+        <div className={styles.content}>
           <Sidebar />
-          <main className="flex-1 overflow-auto">{children}</main>
+          <main className={styles.main}>{children}</main>
         </div>
         <Footer />
       </body>

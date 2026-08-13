@@ -1,10 +1,15 @@
-// Minimal Wikidot-style parser for AEG document sources.
-// Supports:
-//   [[include :aegis:component:anomaly-class-bar |key= value ... ]]
-//   **Heading**            (a line that is entirely bold)
-//   [[pagebreak]]          (starts a new document sheet)
-//   plain paragraphs, **inline bold** within them
+/*
+ Wikidot-style parser for AEG document sources.
+ Supports:
+   [[include :aegis:component:anomaly-class-bar |key= value ... ]]
+   **Heading**            (a line that is entirely bold)
+   [[pagebreak]]          (starts a new document sheet)
+   plain paragraphs, **inline bold** within them
 
+  AI CITE
+  REGEX is AI generated.
+  CODE is not.
+ */
 export type Block =
   | { type: "classBar"; params: Record<string, string> }
   | { type: "heading"; text: string }
@@ -29,9 +34,12 @@ function parseBlocks(chunk: string): Block[] {
     pushTextBlocks(rest.slice(0, match.index), blocks);
 
     const params: Record<string, string> = {};
+    {/* Adaptive parser, automatically input each entry as a param. */}
     for (const line of match[1].split("\n")) {
       const param = /^\s*\|\s*([\w-]+)\s*=\s*(.*?)\s*$/.exec(line);
-      if (param) params[param[1]] = param[2];
+      if (param) {
+        params[param[1]] = param[2];
+      }
     }
     blocks.push({ type: "classBar", params });
 

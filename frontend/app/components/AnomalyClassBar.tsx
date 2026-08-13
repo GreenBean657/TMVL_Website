@@ -1,112 +1,193 @@
 import Image from "next/image";
+import styles from "../../css/components/AnomalyClassBar.module.css";
 
-const DISRUPTION_NAME: Record<string, string> = {
-  dark: "Dark",
-  vlam: "Vlam",
-  keneq: "Klam",
-  ekhi: "Ekhi",
-  amida: "Amida"
-}
-
-const DISRUPTION_URL: Record<string, string> = {
-  dark: "/disruption/dark.svg",
-  vlam: "/disruption/vlam.svg",
-  keneq: "/disruption/keneq.svg",
-  ekhi: "/disruption/ekhi.svg",
-  amida: "/disruption/amida.svg"
-}
-
-const RISK_NAME: Record<string, string> = {
-  notice: "Notice",
-  caution: "Caution",
-  warning: "Warning",
-  danger: "Danger",
-  critical: "Critical",
-}
-
-
-const RISK_URL: Record<string, string> = {
-  notice: "/risk/notice.svg",
-  caution: "/risk/caution.svg",
-  warning: "/risk/warning.svg",
-  danger: "/risk/danger.svg",
-  critical: "/risk/critical.svg"
-}
-
-const CLASS_DOTS: Record<string, string> = {
-  dark: "#009f6b",
-  vlam: "#3b82f6",
-  keneq: "#eab308",
-  ekhi: "#f97316",
-  amida: "#c40233",
-  notice: "#009f6b",
-  caution: "#84cc16",
-  warning: "#eab308",
-  danger: "#f97316",
-  critical: "#c40233",
-
-  ursa: "#004bad",
-  lyra: "#c1ebab",
-  orion: "#ffdd5b",
-  cygnus: "#ffdd5b",
-  drako: "#ab1415",
-  hydra: "#ab1415",
-  cassiopeia: "#710c67",
-  ophiuchus: "#710c67"
+const DATA: {} = {
+  dark: {
+    name: "Dark",
+    url: "/disruption/dark.svg",
+    colors: {
+      main: "#009f6b",
+      light: "#cde1fb"
+    }
+  },
+  vlam: {
+    name: "Vlam",
+    url: "/disruption/vlam.svg",
+    colors: {
+      main: "#3b82f6",
+      light: "#cde1fb"
+    }
+  },
+  keneq: {
+    name: "Klam",
+    url: "/disruption/keneq.svg",
+    colors: {
+      main: "#eab308",
+      light: "#fbf1cd"
+    }
+  },
+  ekhi: {
+    name: "Ekhi",
+    url: "/disruption/ekhi.svg",
+    colors: {
+      main: "#f97316",
+      light: "#fbf1cd"
+    }
+  },
+  amida: {
+    name: "Amida",
+    url: "/disruption/amida.svg",
+    colors: {
+      main: "#c40233",
+      light: "#f6d2d2"
+    }
+  },
+  notice: {
+    name: "Notice",
+    url: "/risk/notice.svg",
+    colors: {
+      main: "#009f6b",
+      light: "#e0f2d6"
+    }
+  },
+  caution: {
+    name: "Caution",
+    url: "/risk/caution.svg",
+    colors: {
+      main: "#84cc16",
+      light: "#e0f2d6"
+    }
+  },
+  warning: {
+    name: "Warning",
+    url: "/risk/warning.svg",
+    colors: {
+      main: "#eab308",
+      light: "#fbf1cd"
+    }
+  },
+  danger: {
+    name: "Danger",
+    url: "/risk/danger.svg",
+    colors: {
+      main: "#f97316",
+      light: "#fbf1cd"
+    }
+  },
+  critical: {
+    name: "Critical",
+    url: "/risk/critical.svg",
+    colors: {
+      main: "#c40233",
+      light: "#f6d2d2"
+    }
+  },
+  ursa: {
+    name: "Ursa",
+    url: "/tier/Ursa.png",
+    colors: {
+      main: "#004bad",
+      light: "#cde1fb"
+    }
+  },
+  lyra: {
+    name: "Lyra",
+    url: "/tier/Lyra.png",
+    colors: {
+      main: "#c1ebab",
+      light: "#e0f2d6"
+    }
+  },
+  orion: {
+    name: "Orion",
+    url: "/tier/Orion.png",
+    colors: {
+      main: "#ffdd5b",
+      light: "#fbf1cd"
+    }
+  },
+  cygnus: {
+    name: "Cygnus",
+    url: "/tier/Cygnus.png",
+    colors: {
+      main: "#ffdd5b",
+      light: "#fbf1cd"
+    }
+  },
+  drako: {
+    name: "Drako",
+    url: "/tier/Drako.png",
+    colors: {
+      main: "#ab1415",
+      light: "#f6d2d2"
+    }
+  },
+  hydra: {
+    name: "Hydra",
+    url: "/tier/Hydra.png",
+    colors: {
+      main: "#ab1415",
+      light: "#f6d2d2"
+    }
+  },
+  cassiopeia: {
+    name: "Cassiopeia",
+    url: "/tier/Cassiopeia.png",
+    colors: {
+      main: "#710c67",
+      light: "#f7d1f3"
+    }
+  },
+  ophiuchus: {
+    name: "Ophiuchus",
+    url: "/tier/Ophiuchus.png",
+    colors: {
+      main: "#710c67",
+      light: "#f7d1f3"
+    }
+  },
+  undefined: {
+    name: "undefined",
+    title: "UNDEFINED",
+    url: "/ERROR_R.png",
+    colors: {
+      main: "#ab1415",
+      light: "#f6d2d2"
+    }
+  }
 };
-
-const TIER_LIGHT: Record<string, string> = {
-  ursa: "#cde1fb",
-  lyra: "#e0f2d6",
-  orion: "#fbf1cd",
-  cygnus: "#fbf1cd",
-  drako: "#f6d2d2",
-  hydra: "#f6d2d2",
-  cassiopeia: "#f7d1f3",
-  ophiuchus: "#f7d1f3"
-}
-
-const TIER_URL: Record<string, string> = {
-  ursa: "/tier/Ursa.png",
-  lyra: "/tier/Lyra.png",
-  orion: "/tier/Orion.png",
-  cygnus: "/tier/Cygnus.png",
-  drako: "/tier/Drako.png",
-  hydra: "/tier/Hydra.png",
-  cassiopeia: "/tier/Cassiopeia.png",
-}
 
 function DisruptionRiskSideBar({ color }: { color: string }) {
   return (
-      <div className="w-2 shrink-0 self-stretch"
+      <div className={styles.sideBar}
            style={{background: color}}
       />
   )
 }
-function ContainmentTier({ tier, color_main, color_back }: { tier: string, color_main: string, color_back: string }) {
+function ContainmentTier({ tier, url, color_main, color_back }: { tier: string, url: string, color_main: string, color_back: string }) {
   return (
-      <div className="flex w-[320px] shrink-0 items-stretch">
-        <div className="w-1.5 shrink-0 "
+      <div className={styles.tier}>
+        <div className={styles.tierStrip}
           style={{backgroundColor: color_main}}
         />
-        <div className="flex flex-1 items-center justify-between gap-3 px-3 py-3"
+        <div className={styles.tierBody}
              style={{backgroundColor: color_back}}
         >
-          <div className="min-w-0">
-            <div className="text-xs font-bold tracking-wide text-[#333]">
+          <div className={styles.tierText}>
+            <div className={styles.tierLabel}>
               OBJECT CLASS:
             </div>
-            <div className="text-3xl leading-none font-black uppercase whitespace-nowrap">
-              URSA
+            <div className={styles.tierName}>
+              {tier}
             </div>
           </div>
-          <div className="flex h-20 w-20 shrink-0 items-center justify-center">
+          <div className={styles.tierEmblem}>
             <Image
-                src={TIER_URL[tier] ?? "/tier/Ursa.png"}
+                src={url}
                 alt={tier}
                 width={90}
                 height={80}
-                className="h-20 w-auto object-contain"
+                className={styles.tierImg}
             />
           </div>
         </div>
@@ -117,7 +198,7 @@ function ContainmentTier({ tier, color_main, color_back }: { tier: string, color
 function CircleBadge({ name, color, url }: { name: string; color: string; url: string }) {
   return (
       <div
-          className="flex h-12 w-12 shrink-0 flex-col items-center justify-center rounded-full border-[3px]"
+          className={styles.badge}
           style={{ backgroundColor: color }}
       >
         <Image alt={name} src={url} width={120} height={120} />
@@ -125,82 +206,120 @@ function CircleBadge({ name, color, url }: { name: string; color: string; url: s
   );
 }
 
+/**
+ * @desc Convert a true/false string to the boolean value, case insensitive.
+ * @param val True/False string
+ * @brief "tRue" > true, "faLsE" > false
+ */
+function BoolStrToRaw({ val }: { val: string }) {
+  return ((val).toLowerCase() === "true");
+}
+/**
+ * @desc Converts a string to regular case (first letter of each word capitalized, rest lower case).
+ * @param str String to convert, either lower or upper case.
+ * @brief "hello wOrLd" > "Hello World"
+ */
+function toRegularCase({ str }: { str: string }) {
+  str = (str).toLowerCase();
+  if (str.length == 0) {
+    return ""
+  }
+  for (let i = 0; i < str.length; i++) {
+    if (i == 0) {
+      str = str[0].toUpperCase() + str.substring(1);
+    } else if (str.charAt(i) == ' ') {
+      str = str.substring(0, i + 1) + str.charAt(i + 1).toUpperCase() + str.substring(i + 2);
+    }
+  }
+  return str;
+}
+
 export default function AnomalyClassBar({
                                           params,
                                         }: {
   params: Record<string, string>;
 }) {
-  const itemNumber = params["item-number"] ?? "????";
-  const containerClass = params["container-class"] ?? "none";
-  const disruptionClass = (params["disruption-class"] ?? "dark").toLowerCase();
-  const riskClass = (params["risk-class"] ?? "notice").toLowerCase();
+  const itemNumber = params["item-number"] ?? "undefined";
+  const containerClass = params["container-class"] ?? "cassiopeia";
+  const disruptionClass = (params["disruption-class"] ?? "undefined").toLowerCase();
+  const riskClass = (params["risk-class"] ?? "undefined").toLowerCase();
+  const reqContainmentEngineer = BoolStrToRaw({ val: params["req-engineer"] ?? "false" });
+  const reqTactics = BoolStrToRaw({ val: params["req-tactics"] ?? "false" });
+  const reqO4 = BoolStrToRaw({ val: params["req-O4"] ?? "false" });
+  const reqSpecial = BoolStrToRaw({ val: params["req-special"] ?? "false" });
 
+  const minResearcherPosition = params["min-researcher"] ?? "undefined";
+  const department = (params["department"] ?? "undefined").toUpperCase();
+  const division = toRegularCase({ str: (params["division"] ?? "undefined" )});
   return (
-      <div className="mb-8 font-sans text-[#111]">
+      <div className={styles.root}>
         {/* Header: item number, pinstripes, clearance level */}
-        <div className="flex items-end justify-between gap-6">
-          <div className="flex items-baseline gap-2">
-            <span className="text-3xl font-bold tracking-tight">AEG#:</span>
-            <span className="text-6xl leading-none font-black tracking-tight">
+        <div className={styles.header}>
+          <div className={styles.aegLabel}>
+            <span className={styles.aegPrefix}>AEG#:</span>
+            <span className={styles.aegNumber}>
             {itemNumber}
           </span>
           </div>
-          <div className="text-right leading-none">
-            <div className="text-3xl font-black">BIOLOGY DEPARTMENT</div>
-            <div className="mt-1 text-xs font-bold tracking-[0.2em]">
-              Genetic Development Division
+          <div className={styles.dept}>
+            <div className={styles.deptName}>
+              {department}
+            </div>
+            <div className={styles.deptSub}>
+              {division}
             </div>
           </div>
         </div>
 
         {/* Thick black divider */}
-        <div className="my-1.5 h-2.5 bg-black" />
+        <div className={styles.dividerThick} />
 
         {/* Body */}
-        <div className="flex items-stretch">
+        <div className={styles.body}>
           {/* Containment class */}
           <ContainmentTier
-              tier={containerClass}
-              color_main={CLASS_DOTS[containerClass] ?? CLASS_DOTS["ursa"]}
-              color_back={TIER_LIGHT[containerClass] ?? TIER_LIGHT["ursa"]}
+              tier={DATA[containerClass]?.name ?? DATA["undefined"]?.name}
+              url={DATA[containerClass]?.url ?? DATA["undefined"]?.url}
+              color_main={DATA[containerClass]?.colors?.main ?? DATA["undefined"]?.colors?.main}
+              color_back={DATA[containerClass]?.colors?.light ?? DATA["undefined"]?.colors?.light}
           />
           {/* Disruption + risk */}
-          <div className="flex flex-1 flex-col gap-2.5 bg-[#eef3f5] px-4">
-            <div className="flex flex-1 items-center gap-3 bg-[#d6eaf2]"> {/* Disruption BG */}
+          <div className={styles.classes}>
+            <div className={styles.classRow}> {/* Disruption BG */}
               <DisruptionRiskSideBar
-                  color={CLASS_DOTS[disruptionClass] ?? "#6b7280"}
+                  color={DATA[disruptionClass]?.colors?.main ?? DATA["undefined"]?.colors?.main}
               />
               {/* Disruption Left Header */}
-              <div className="flex flex-1 flex-col items-start">
-              <span className="text-[10px] font-bold tracking-wide text-[#333]">
+              <div className={styles.classText}>
+              <span className={styles.classLabel}>
                 DISRUPTION CLASS:
               </span>
-                <span className="text-2xl leading-none font-extrabold uppercase">
-               {disruptionClass}
+                <span className={styles.classValue}>
+               {DATA[disruptionClass]?.name ?? DATA["undefined"]?.name}
               </span>
               </div>
               <CircleBadge
-                  name={DISRUPTION_NAME[disruptionClass] ?? "?"}
-                  color={CLASS_DOTS[disruptionClass] ?? "#6b7280"}
-                  url={DISRUPTION_URL[disruptionClass] ?? "?"}
+                  name={DATA[disruptionClass]?.name ?? DATA["undefined"]?.name}
+                  color={DATA[disruptionClass]?.colors?.main ?? DATA["undefined"]?.colors?.main}
+                  url={DATA[disruptionClass]?.url ?? DATA["undefined"]?.url}
               />
             </div>
-            <div className="flex flex-1 items-center gap-3 bg-[#d6eaf2]"> {/* Risk BG */}
+            <div className={styles.classRow}> {/* Risk BG */}
               <DisruptionRiskSideBar
-                  color={CLASS_DOTS[riskClass] ?? "#6b7280"}
+                  color={DATA[riskClass]?.colors?.main ?? DATA["undefined"]?.colors?.main}
               />
-              <div className="flex flex-1 flex-col items-start">
-              <span className="text-[10px] font-bold tracking-wide text-[#333]">
+              <div className={styles.classText}>
+              <span className={styles.classLabel}>
                 RISK CLASS:
               </span>
-                <span className="text-2xl leading-none font-extrabold uppercase">
-               {riskClass}
+                <span className={styles.classValue}>
+               {DATA[riskClass]?.name ?? DATA["undefined"]?.name}
               </span>
               </div>
               <CircleBadge
-                  name={RISK_NAME[riskClass] ?? "?"}
-                  color={CLASS_DOTS[riskClass] ?? "#6b7280"}
-                  url={RISK_URL[riskClass] ?? "?"}
+                  name={DATA[riskClass]?.name ?? DATA["undefined"]?.name}
+                  color={DATA[riskClass]?.colors?.main ?? DATA["undefined"]?.colors?.main}
+                  url={DATA[riskClass]?.url ?? DATA["undefined"]?.url}
               />
             </div>
           </div>
@@ -208,45 +327,45 @@ export default function AnomalyClassBar({
         </div>
 
         {/* Thin black divider */}
-        <div className="my-1 h-1 bg-gray-800" />
+        <div className={styles.dividerThin} />
 
         {/* MAIN */}
 
-        <div className="flex items-stretch border-b-2 border-white">
-          <div className="flex flex-1 items-stretch bg-[#dfe9f0]">
+        <div className={styles.main}>
+          <div className={styles.mainInner}>
             {/* Checklist — left half */}
-            <ul className="flex-1 space-y-1 px-4 py-2">
+            <ul className={styles.checklist}>
               {[
-                { label: "Requires Containment Engineer", checked: false },
-                { label: "Requires Tactics Escort", checked: false },
-                { label: "Requires 04 Approval", checked: true },
-                { label: "Requires Special Approval — See Governance Protocols", checked: true },
+                { label: "Requires Containment Engineer", checked: reqContainmentEngineer },
+                { label: "Requires Tactics Escort", checked: reqTactics },
+                { label: "Requires 04 Approval", checked: reqO4 },
+                { label: "Requires Special Approval — See Governance Protocols", checked: reqSpecial },
               ].map((item) => (
-                  <li key={item.label} className="flex items-center gap-2 text-sm">
-                  <span className="flex h-4 w-4 shrink-0 items-center justify-center border-2 border-[#1b3a5c] bg-white">
-                  {item.checked && (
-                      <span className="text-xs font-black leading-none text-[#1b3a5c]">✓</span>
-                  )}
-                  </span>
+                  <li key={item.label} className={styles.checkItem}>
+                    <span className={styles.checkbox}>
+                    {item.checked && (
+                        <span className={styles.checkmark}>✓</span>
+                    )}
+                    </span>
                     {item.label}
                   </li>
               ))}
             </ul>
             {/* Min. researcher position — right half */}
-            <div className="flex w-56 shrink-0 flex-col items-center border-l-2 border-white px-4 py-2">
-              <span className="bg-[#1b3a5c] px-3 py-1 text-[11px] font-bold uppercase text-white">
+            <div className={styles.minPos}>
+              <span className={styles.minPosLabel}>
                 Min. Researcher Position
               </span>
-              <div className="flex flex-1 items-center">
-                <span className="text-center text-lg font-black uppercase leading-tight">
-                  Anomaly Researcher
+              <div className={styles.minPosValueWrap}>
+                <span className={styles.minPosValue}>
+                  {minResearcherPosition}
                 </span>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="my-1 h-3 bg-gray-800" />
+        <div className={styles.dividerBottom} />
 
 
 

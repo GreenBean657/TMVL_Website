@@ -1,0 +1,13 @@
+@reference "tailwindcss";
+
+.nav {
+  @apply w-full border-b border-[#d3dddd] bg-[#eef2f2] text-xs font-bold uppercase tracking-wide text-[#33403e];
+}
+
+.inner {
+  @apply mx-auto flex max-w-7xl items-center gap-0 px-4;
+}
+
+.link {
+  @apply border-r border-[#d3dddd] px-4 py-2 transition hover:bg-[#dce8e7] hover:text-[#0f766e];
+}

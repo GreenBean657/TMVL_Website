@@ -1,0 +1,33 @@
+@reference "tailwindcss";
+
+.aside {
+  @apply w-64 border-r border-[#d3dddd] bg-[#f4f7f7] text-[13px];
+}
+
+.header {
+  @apply border-b border-[#d3dddd] bg-[#e8efef] p-3 text-xs font-bold uppercase tracking-wider text-[#4a5c5a];
+}
+
+.body {
+  @apply p-3;
+}
+
+.section {
+  @apply mb-4;
+}
+
+.label {
+  @apply mb-1 text-[11px] font-bold uppercase tracking-wider text-[#0f766e];
+}
+
+.link {
+  @apply block border-l-2 py-1 pl-2 transition;
+}
+
+.active {
+  @apply border-[#0f766e] bg-[#dce8e7] font-bold text-[#0f766e];
+}
+
+.inactive {
+  @apply border-transparent text-[#33403e] hover:bg-[#e4ecec] hover:text-[#0f766e];
+}

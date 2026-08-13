@@ -1,0 +1,9 @@
+@reference "tailwindcss";
+
+.footer {
+  @apply w-full border-t border-[#d3dddd] bg-[#eef2f2] px-4 py-3 text-center text-[11px] text-[#5f7370];
+}
+
+.tagline {
+  @apply uppercase tracking-wider;
+}

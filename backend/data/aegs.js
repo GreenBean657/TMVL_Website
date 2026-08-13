@@ -10,14 +10,22 @@ module.exports = {
   "001": {
     id: "001",
     title: "The Hollow Choir",
-    source: `[[include :aegis:component:anomaly-class-bar
-|item-number= 001
-|container-class= euclid
-|disruption-class= vlam
-|risk-class= warning
+    source: `
+    [[include :aegis:component:anomaly-class-bar
+|item-number=001
+|container-class= cassiopeia
+|disruption-class= ekhi
+|risk-class= caution
+|req-engineer=false
+|req-tactics=false
+|req-O4=false
+|req-special=false
+|min-researcher=Senior Researcher
+|department=Biology Department
+|division=Genetic Development Division
 ]]
 
-**Special Containment Procedures**
+**Governance Protocols**
 
 AEG-001 is to be housed in a standard humanoid containment cell at AEGIS Site-07. The cell must be lined with acoustic dampening foam and maintained at a constant temperature of 18°C. Personnel entering the containment area must wear sound-suppressing earmuffs rated for at least 40 dB of attenuation.
 
