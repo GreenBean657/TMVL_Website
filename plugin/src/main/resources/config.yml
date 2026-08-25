@@ -1,0 +1,18 @@
+# Endpoint the plugin calls when a player runs /register.
+# The plugin sends a POST (application/x-www-form-urlencoded) with the fields
+#   uuid=<player uuid>&username=<player name>
+# and expects the response body to be the registration link (plain text),
+# e.g. https://example.com/register/examplereturnedlinkfortheplayertoclick
+endpoint: "http://localhost/register"
+
+# Connect/read timeout for the HTTP request, in seconds.
+timeout-seconds: 10
+
+# Chat messages. '&' color codes are supported.
+messages:
+  prefix: "&8[&bRegister&8] &r"
+  only-players: "&cOnly players can use this command."
+  requesting: "&7Requesting your registration link..."
+  success: "&aClick the link below to complete your registration:"
+  failure: "&cThe server did not return a valid link. Please try again later."
+  error: "&cCould not reach the registration server. Please try again later."

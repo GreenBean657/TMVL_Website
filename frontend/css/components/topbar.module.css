@@ -27,7 +27,3 @@
 .userArea {
   @apply flex items-center gap-4 text-xs uppercase tracking-wider text-[#5f7370];
 }
-
-.login {
-  @apply border border-[#0f766e] bg-white px-3 py-1 uppercase tracking-wider text-[#0f766e] transition hover:bg-[#0f766e] hover:text-white;
-}
