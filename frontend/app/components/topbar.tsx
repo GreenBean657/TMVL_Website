@@ -25,9 +25,9 @@ export default function Topbar() {
 
         <div className={styles.userArea}>
           <span>Personnel: Senior Researcher</span>
-          <button className={styles.login}>
+          <Link href="/login" className={styles.login}>
             Login
-          </button>
+          </Link>
         </div>
       </div>
     </header>

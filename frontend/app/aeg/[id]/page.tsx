@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import AnomalyClassBar from "../../components/AnomalyClassBar";
+import { backendFetch } from "../../lib/api";
 import { parsePages, type Block } from "../../lib/wikidot";
 import styles from "../../../css/aeg.module.css";
 
@@ -16,8 +17,7 @@ interface AegDoc {
 }
 
 async function getDoc(id: string): Promise<AegDoc | null> {
-  const base = process.env.BACKEND_URL ?? "http://localhost:3001";
-  const res = await fetch(`${base}/aegs/${id}`, { cache: "no-store" });
+  const res = await backendFetch(`/aegs/${id}`);
   if (res.status === 404) return null;
   if (!res.ok) throw new Error(`Backend returned ${res.status}`);
   return res.json();

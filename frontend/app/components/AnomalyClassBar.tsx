@@ -1,7 +1,17 @@
 import Image from "next/image";
 import styles from "../../css/components/AnomalyClassBar.module.css";
 
-const DATA: {} = {
+type ClassData = {
+  name: string;
+  url: string;
+  colors: {
+    main: string;
+    light: string;
+  };
+  title?: string;
+};
+
+const DATA: Record<string, ClassData> = {
   dark: {
     name: "Dark",
     url: "/disruption/dark.svg",
