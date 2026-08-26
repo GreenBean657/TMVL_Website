@@ -13,7 +13,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
 public final class RegisterCommand implements CommandExecutor {
@@ -49,10 +48,12 @@ public final class RegisterCommand implements CommandExecutor {
         return true;
     }
 
-    /** POSTs the player's uuid and username to the endpoint; returns the response body. */
+    /** POSTs the player's uuid and username to the endpoint as JSON; returns the response body. */
     private String requestLink(Player player) throws IOException {
-        String body = "uuid=" + URLEncoder.encode(player.getUniqueId().toString(), "UTF-8")
-                + "&username=" + URLEncoder.encode(player.getName(), "UTF-8");
+        // uuid and username cannot contain characters that need JSON escaping,
+        // but escape anyway to stay correct if that ever changes.
+        String body = "{\"uuid\":\"" + jsonEscape(player.getUniqueId().toString())
+                + "\",\"username\":\"" + jsonEscape(player.getName()) + "\"}";
 
         HttpURLConnection conn = (HttpURLConnection) new URL(plugin.getEndpoint()).openConnection();
         try {
@@ -60,7 +61,7 @@ public final class RegisterCommand implements CommandExecutor {
             conn.setDoOutput(true);
             conn.setConnectTimeout(plugin.getTimeoutSeconds() * 1000);
             conn.setReadTimeout(plugin.getTimeoutSeconds() * 1000);
-            conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            conn.setRequestProperty("Content-Type", "application/json");
             conn.setRequestProperty("User-Agent",
                     plugin.getName() + "/" + plugin.getDescription().getVersion());
 
@@ -102,6 +103,10 @@ public final class RegisterCommand implements CommandExecutor {
         component.setUnderlined(true);
         component.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, link));
         player.spigot().sendMessage(component);
+    }
+
+    private static String jsonEscape(String value) {
+        return value.replace("\\", "\\\\").replace("\"", "\\\"");
     }
 
     private static String readAll(InputStream in) throws IOException {

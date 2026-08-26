@@ -1,6 +1,6 @@
 # Endpoint the plugin calls when a player runs /register.
-# The plugin sends a POST (application/x-www-form-urlencoded) with the fields
-#   uuid=<player uuid>&username=<player name>
+# The plugin sends a POST with a JSON body
+#   {"uuid": "<player uuid>", "username": "<player name>"}
 # and expects the response body to be the registration link (plain text),
 # e.g. https://example.com/register/examplereturnedlinkfortheplayertoclick
 endpoint: "http://localhost/register"
